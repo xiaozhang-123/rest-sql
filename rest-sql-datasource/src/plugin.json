@@ -1,0 +1,34 @@
+{
+  "name": "RestSQL",
+  "id": "grafana-rest-sql",
+  "type": "datasource",
+
+  "partials": {
+    "config": "public/app/plugins/datasource/RestSQL/partials/config.html"
+  },
+
+  "metrics": true,
+  "annotations": false,
+
+  "info": {
+    "description": "restsql datasource",
+    "author": {
+      "name": "Tencent",
+      "url": ""
+    },
+    "logos": {
+      "small": "img/restsql_logo.svg",
+      "large": "img/restsql_logo.svg"
+    },
+    "links": [
+      {"name": "io", "url": ""}
+    ],
+    "version": "1.4.1",
+    "updated": "2021-8-8"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "8.0.x",
+    "plugins": [ ]
+  }
+}

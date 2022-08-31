@@ -1,0 +1,46 @@
+tables:
+  - table_name: wikipedia
+    fields:
+      __time: TimeField
+      cityName: StringField
+      comment: StringField
+      commentLength: NumberField
+      channel: StringField
+  - table_name: users
+    fields:
+      id:
+      login_Time:
+      name:
+      gender:
+      age:
+      cityName:
+  - table_name: student
+    fields:
+      id:
+      name:
+      age:
+      logintime:
+db_settings:
+  - name: druid_test
+    tables:
+      - wikipedia
+    db_type: DRUID
+    host: localhost
+    port: '8888'
+    user: postgres
+    black_tables: []
+    black_fields:
+  - name: es_test
+    tables:
+      - users
+    db_type: ES
+    host: localhost
+    port: "9200"
+    black_tables: []
+    black_fields:
+      blacktable_1:
+        - test1
+        - test2
+
+
+

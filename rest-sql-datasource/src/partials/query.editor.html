@@ -1,0 +1,176 @@
+<query-editor-row query-ctrl="ctrl" class="restsql-datasource-query-row " has-text-edit-mode="true">
+
+  <!--TIME FIELD-->
+  <div class="gf-form-inline" id="timeSeriesSpecial">
+
+    <!--TIME FIELD-->
+    <div class="gf-form">
+      <label class="gf-form-label query-keyword width-8">
+        <span>TIME FIELD</span>
+      </label>
+    </div>
+
+    <div class="gf-form" ng-repeat="part in ctrl.target.timeField">
+      <sql-part-editor part="part" class="gf-form-label sql-part"
+        handle-event="ctrl.handleTimeFieldEvent(part, $index, $event)">
+      </sql-part-editor>
+    </div>
+
+    <div class="gf-form">
+      <label class="dropdown" dropdown-typeahead2="ctrl.selectMenu"
+        dropdown-typeahead-on-select="ctrl.addTimeFieldAction(part, $index)"
+        button-template-class="gf-form-label query-part">
+      </label>
+    </div>
+
+    <div class="gf-form gf-form--grow">
+      <div class="gf-form-label gf-form-label--grow"></div>
+    </div>
+
+
+
+    <!-- TIME AGGREGATION -->
+    <div class="gf-form">
+      <label class="gf-form-label query-keyword width-8">
+        <span>TIME AGG</span>
+      </label>
+    </div>
+
+    <div class="gf-form">
+      <metric-segment segment="ctrl.target.timeAggSegment" on-change="ctrl.onTimeAggChanged()">
+      </metric-segment>
+    </div>
+
+    <div class="gf-form-select-wrapper gf-form">
+      <select class="gf-form-input gf-size-auto" ng-model="ctrl.target.timeAggDimension"
+              ng-options="f.value as f.text for f in ctrl.dimensions" ng-change="ctrl.onTimeAggDimensionChanged()"></select>
+    </div>
+
+    <!--TIMESHIFT-->
+    <div class="gf-form">
+      <label class="gf-form-label query-keyword width-8">TIMESHIFT</label>
+    </div>
+
+    <div class="gf-form">
+      <metric-segment segment="ctrl.target.timeShiftSegment" on-change="ctrl.onTimeShiftChanged()">
+      </metric-segment>
+    </div>
+
+    <div class="gf-form-select-wrapper gf-form">
+      <select class="gf-form-input gf-size-auto" ng-model="ctrl.target.timeShiftDimension"
+        ng-options="f.value as f.text for f in ctrl.dimensions" ng-change="ctrl.onTimeShiftDimensionChanged()"></select>
+    </div>
+
+  </div>
+
+  <!--FROM-->
+  <div class="gf-form-inline">
+    <div class="gf-form">
+      <label class="gf-form-label query-keyword width-8">FROM</label>
+    </div>
+
+    <div class="gf-form" ng-repeat="part in ctrl.target.fromParts">
+
+      <sql-part-editor class="gf-form-label sql-part" part="part"
+        handle-event="ctrl.handleFromPartEvent(part, $index, $event)">
+      </sql-part-editor>
+    </div>
+
+    <div class="gf-form">
+      <label class="dropdown" button-template-class="gf-form-label query-part">
+      </label>
+    </div>
+
+    <div class="gf-form gf-form--grow">
+      <div class="gf-form-label gf-form-label--grow"></div>
+    </div>
+  </div>
+
+  <!--SELECT-->
+  <div class="gf-form-inline">
+    <div class="gf-form">
+      <label class="gf-form-label query-keyword width-8">
+        <span>SELECT</span>
+      </label>
+    </div>
+    <div class="gf-form" ng-repeat="part in ctrl.target.selectionsParts track by $index">
+      <sql-part-editor part="part" class="gf-form-label sql-part"
+        handle-event="ctrl.handleSelectionsPartEvent(part,$index, $event)">
+      </sql-part-editor>
+    </div>
+
+
+    <div class="gf-form">
+      <label class="dropdown" dropdown-typeahead2="ctrl.selectMenu"
+        dropdown-typeahead-on-select="ctrl.addSelectionAction(part, $index)"
+        button-template-class="gf-form-label query-part">
+      </label>
+    </div>
+
+    <div class="gf-form gf-form--grow">
+      <div class="gf-form-label gf-form-label--grow"></div>
+    </div>
+  </div>
+
+
+  <!--WHERE-->
+  <div class="gf-form-inline">
+    <div class="gf-form">
+      <label class="gf-form-label query-keyword width-8">WHERE</label>
+    </div>
+
+    <div class="gf-form" ng-repeat="part in ctrl.target.whereParts">
+      <sql-part-editor class="gf-form-label sql-part" part="part"
+        handle-event="ctrl.handleWherePartEvent(part, $index, $event)">
+      </sql-part-editor>
+    </div>
+
+
+
+    <div class="gf-form">
+      <label class="dropdown" dropdown-typeahead2="ctrl.selectMenu"
+        dropdown-typeahead-on-select="ctrl.addWhereAction(part, $index)"
+        button-template-class="gf-form-label query-part">
+      </label>
+    </div>
+
+    <div class="gf-form gf-form--grow">
+      <div class="gf-form-label gf-form-label--grow"></div>
+    </div>
+  </div>
+
+
+  <!--GROUP BY-->
+  <div class="gf-form-inline">
+    <div class="gf-form">
+      <label class="gf-form-label query-keyword width-8">
+        <span>GROUP BY</span>
+      </label>
+    </div>
+    <div class="gf-form" ng-repeat="part in ctrl.target.groupParts">
+
+      <sql-part-editor part="part" class="gf-form-label sql-part"
+        handle-event="ctrl.handleGroupPartEvent(part, $index, $event)">
+      </sql-part-editor>
+    </div>
+
+
+
+    <div class="gf-form">
+      <label class="dropdown" dropdown-typeahead2="ctrl.selectMenu"
+        dropdown-typeahead-on-select="ctrl.addGroupAction(part, $index)"
+        button-template-class="gf-form-label query-part">
+      </label>
+    </div>
+
+    <div class="gf-form gf-form--grow">
+      <div class="gf-form-label gf-form-label--grow"></div>
+    </div>
+  </div>
+
+  <!--LIMIT-->
+  <div class="gf-form-inline">
+    <label class="gf-form-label query-keyword width-8">LIMIT</label>
+    <metric-segment segment="ctrl.target.queryLimitSegment" on-change="ctrl.onLimitQueryChanged()"></metric-segment>
+  </div>
+</query-editor-row>
